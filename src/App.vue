@@ -1,6 +1,6 @@
 <template> 
   <div id="app">
-    <Testimonial />
+    <Testimonial v-bind:testimonialList="testimonialList" />
   </div>
 </template>
 
@@ -11,6 +11,37 @@ export default {
   name: 'App',
   components: {
     Testimonial
+  },
+  data() {
+    return {
+      testimonialList: [
+        {
+          id: '1',
+          name: 'Yannic McDagan',
+          company: 'Sardari Sardines Ltc',
+          location: 'Preston',
+          info: 'delectus aut autem'
+        }, {
+          id: '2',
+          name: 'Yannic Myulic',
+          company: 'Malik DualEdge',
+          location: 'Lisburn',
+          info: 'quis ut nam facilis et officia qui'
+        }, {
+          id: '3',
+          name: 'Yulic Myannicle',
+          company: 'Muffagan Bakery',
+          location: 'Liverpool',
+          info: 'fugiat veniam minus'
+        }, {
+          id: '4',
+          name: 'Kelly Wooters',
+          company: 'Mumford and sons',
+          location: 'Manchester',
+          info: 'et porro tempora'
+        }
+      ]
+    }
   }
 }
 </script>
