@@ -1,6 +1,5 @@
 <template>
   <div id="testimonial">
-    <h1>Our Testimonials</h1>
     <div id="testimonialCard">
       <v-app>
         <v-container>

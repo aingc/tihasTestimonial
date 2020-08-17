@@ -1,5 +1,6 @@
 <template> 
   <div id="app">
+    <h1>Our Testimonials</h1>
     <Testimonial v-bind:testimonialList="testimonialList" />
   </div>
 </template>
