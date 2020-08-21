@@ -3,43 +3,49 @@
     <div id="testimonialCard">
       <v-app>
         <v-container>
-          <v-carousel
-            light
-            hide-delimiter-background=""
-            :continuous="true"
-            :show-arrows="false"
-            delimiter-icon="mdi-minus"
-            >
-            <v-carousel-item
-              v-bind:key="testimonial.id" v-for="testimonial in testimonialList"
+          <v-sheet class="mx-auto">
+            <v-expand-transition>
+              <v-sheet
+                v-if="currentTestimonial != null"
+                color="grey lighten-4"
               >
-              <v-row justify="center">
-                <v-col class="col-4">
-                  <v-card
-                    class="mx-lg-auto yellow lighten-1 pa-2"
-                    outlined>
-                    <div></div>
-                    <v-avatar color="grey" size="132">
-                      <span class="white--text headline">{{testimonial.id}}</span>
+                <v-card
+                  class="mx-lg-auto yellow lighten-1 pa-2"
+                  outlined>
+                  <div></div>
+                  <v-avatar color="grey" size="132">
+                    <span class="white--text headline">{{testimonialList[currentTestimonial].id}}</span>
+                  </v-avatar>
+                  <v-card-text class="blue--text">
+                    <p>{{testimonialList[currentTestimonial].name}}</p>
+                    <p>{{testimonialList[currentTestimonial].company}}</p>
+                    <p>{{testimonialList[currentTestimonial].location}}</p>
+                  </v-card-text>
+                </v-card>
+              </v-sheet>
+            </v-expand-transition>
+            <v-slide-group
+              class="pa-4"
+              v-model="currentTestimonial"
+              mandatory
+            >
+              <v-slide-item
+                v-bind:key="testimonial.id"
+                v-for="testimonial in testimonialList"
+                v-slot:default="{ active, toggle }"
+              >
+                <v-row justify="center">
+                  <v-col>
+                    <v-avatar
+                      :color="active ? '#2A4898' : '#FCE700'"
+                      @click="toggle"
+                    >
                     </v-avatar>
-                    <v-card-text class="blue--text">
-                      <p>{{testimonial.name}}</p>
-                      <p>{{testimonial.company}}</p>
-                      <p>{{testimonial.location}}</p>
-                    </v-card-text>
-                  </v-card>
-                </v-col>
-              </v-row>
-              <v-row justify="center">
-                <v-col class="col-3">
-                  <v-card
-                    class="mx-lg-auto blue pa-2">
-                    <p class="yellow--text">{{testimonial.info}}</p>
-                  </v-card>
-                </v-col>
-              </v-row>
-            </v-carousel-item>
-          </v-carousel>
+                  </v-col>
+                </v-row>
+              </v-slide-item>
+            </v-slide-group>
+          </v-sheet>
         </v-container>
       </v-app>
     </div>
@@ -49,7 +55,12 @@
 <script>
 export default {
   name: 'Testimonial',
-  props: ['testimonialList']
+  props: ['testimonialList'],
+  data: () => {
+    return {
+      currentTestimonial: null
+    }
+  }
 }
 </script>
 
