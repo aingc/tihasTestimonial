@@ -10,19 +10,32 @@
                   <v-sheet
                     v-if="currentTestimonial != null"
                   >
+                    <!--
+                      v-card needs to have same background color as child alert because
+                      there are small gaps in the inner border radii where there is no color
+
+                      alert is needed so the parent v-card can have a border as the child alert
+                      cannot have a border without this workaround
+                    -->
                     <v-card
-                      class="mx-lg-auto yellow lighten-1 pa-2"
+                      class="mx-lg-auto pa-0 rounded-xl"
                       outlined
+                      style="border-color: #2A4898; border-width: 4px; background-color: #FCE700;"
                     >
-                      <div></div>
-                      <v-avatar color="grey" size="132">
-                        <span class="white--text headline">{{testimonialList[currentTestimonial].id}}</span>
-                      </v-avatar>
-                      <v-card-text class="blue--text">
-                        <p>{{testimonialList[currentTestimonial].name}}</p>
-                        <p>{{testimonialList[currentTestimonial].company}}</p>
-                        <p>{{testimonialList[currentTestimonial].location}}</p>
-                      </v-card-text>
+                      <v-alert
+                        class="mb-0"
+                        style="background-color: #FCE700;"
+                      >
+                        <div></div>
+                        <v-avatar color="grey" size="132">
+                          <span class="white--text headline">{{testimonialList[currentTestimonial].id}}</span>
+                        </v-avatar>
+                        <v-card-text class="headline font-weight-bold">
+                          <p class="cardText">{{testimonialList[currentTestimonial].name}}</p>
+                          <p class="cardText">{{testimonialList[currentTestimonial].company}}</p>
+                          <p class="cardText">{{testimonialList[currentTestimonial].location}}</p>
+                        </v-card-text>
+                      </v-alert>
                     </v-card>
                   </v-sheet>
                 </v-expand-transition>
@@ -94,5 +107,8 @@ export default {
   }
   .pText {
     color: #FCE700;
+  }
+  .cardText {
+    color: #2A4898;
   }
 </style>
