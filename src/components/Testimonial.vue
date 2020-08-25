@@ -13,19 +13,18 @@
                     <!--
                       v-card needs to have same background color as child alert because
                       there are small gaps in the inner border radii where there is no color
+                      - provided through css with #outerTestimonialCard
 
                       alert is needed so the parent v-card can have a border as the child alert
                       cannot have a border without this workaround
+                      - provided through css with #innerTestimonialCard
                     -->
                     <v-card
-                      class="mx-lg-auto pa-0 rounded-xl"
+                      class="mx-lg-auto pa-2 rounded-xl"
                       outlined
-                      style="border-color: #2A4898; border-width: 4px; background-color: #FCE700;"
+                      id="testimonialCard"
                     >
-                      <v-alert
-                        class="mb-0"
-                        style="background-color: #FCE700;"
-                      >
+                      
                         <div></div>
                         <v-avatar color="grey" size="132">
                           <span class="white--text headline">{{testimonialList[currentTestimonial].id}}</span>
@@ -35,7 +34,7 @@
                           <p class="cardText">{{testimonialList[currentTestimonial].company}}</p>
                           <p class="cardText">{{testimonialList[currentTestimonial].location}}</p>
                         </v-card-text>
-                      </v-alert>
+                      
                     </v-card>
                   </v-sheet>
                 </v-expand-transition>
@@ -73,10 +72,13 @@
                   v-if="currentTestimonial != null"
                 >
                   <v-card
-                    class="mx-lg-auto pa-2"
-                    style="background:#2A4898"
+                    class="mx-lg-auto pa-2 rounded-xl"
+                    outlined
+                    id="testimonialInfo"
                   >
-                    <p class="pText">{{testimonialList[currentTestimonial].info}}</p>
+                    
+                      <p class="pText">{{testimonialList[currentTestimonial].info}}</p>
+                    
                   </v-card>
                 </v-sheet>
               </v-col>
@@ -110,5 +112,15 @@ export default {
   }
   .cardText {
     color: #2A4898;
+  }
+  #testimonialCard {
+    border-color: #2A4898;
+    border-width: 4px;
+    background-color: #FCE700;
+  }
+  #testimonialInfo {
+    border-color: #FCE700;
+    border-width: 4px;
+    background-color: #2A4898;
   }
 </style>
