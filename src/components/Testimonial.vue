@@ -54,6 +54,20 @@
                 </v-slide-group>
               </v-col>
             </v-row>
+            <v-row justify="center">
+              <v-col class="col-3">
+                <v-sheet
+                  v-if="currentTestimonial != null"
+                >
+                  <v-card
+                    class="mx-lg-auto pa-2"
+                    style="background:#2A4898"
+                  >
+                    <p class="pText">{{testimonialList[currentTestimonial].info}}</p>
+                  </v-card>
+                </v-sheet>
+              </v-col>
+            </v-row>
           </v-sheet>
         </v-container>
       </v-app>
@@ -77,5 +91,8 @@ export default {
   .maincard {
     border-style: solid;
     border-width: medium;
+  }
+  .pText {
+    color: #FCE700;
   }
 </style>
